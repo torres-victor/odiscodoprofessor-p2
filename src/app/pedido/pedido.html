@@ -1,1 +1,29 @@
-<p>pedido works!</p>
+<form #f (submit)="$event.preventDefault(); gravarPedido(f)">
+  <label>
+    Código do Cliente:
+    <input type="number" name="txtCodigoCliente" value="1" required />
+  </label>
+  <br />
+
+  <label>
+    Valor Total:
+    <input type="number" step="0.01" name="txtValorTotal" required />
+  </label>
+  <br />
+
+  <label>
+    Entrega:
+    <input type="text" name="txtEntrega" required />
+  </label>
+  <br />
+
+  <label>
+    Observação:
+    <input type="text" name="txtObs" />
+  </label>
+  <br />
+
+  <button type="submit">Gravar Pedido</button>
+</form>
+
+<p *ngIf="salvo">Pedido enviado com sucesso.</p>
