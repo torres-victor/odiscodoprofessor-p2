@@ -1,9 +1,10 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Produto } from '../model/produto';
 import { CestaService } from '../service/cesta';
 import { CatalogoService } from '../service/catalogo';
+import { LojaService } from '../loja.service'; // ajuste o caminho se loja.service.ts estiver em outra pasta
 
 @Component({
   imports: [CommonModule, RouterLink],
@@ -11,10 +12,11 @@ import { CatalogoService } from '../service/catalogo';
   styleUrl: './vitrine.css',
   templateUrl: './vitrine.html',
 })
-export class Vitrine implements OnInit {
+export class Vitrine implements OnInit, OnDestroy {
   private cestaService = inject(CestaService);
   private catalogoService = inject(CatalogoService);
   private rota = inject(ActivatedRoute);
+  lojaService = inject(LojaService);
 
   promo = this.rota.snapshot.routeConfig?.path === 'promo';
   lista = signal<Produto[]>([]);
@@ -28,6 +30,10 @@ export class Vitrine implements OnInit {
         console.error('Erro ao carregar produtos do banco de dados:', erro);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.lojaService.mensagemLogin.set(null);
   }
 
   comprar(produto: Produto) {

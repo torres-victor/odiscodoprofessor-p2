@@ -1,3 +1,7 @@
+@if (lojaService.mensagemLogin(); as msg) {
+  <div class="alert alert-success mb-3">{{ msg }}</div>
+}
+
 <h4 class="text-light mb-3" *ngIf="promo">Promoções</h4>
 <div class="row g-3">
     <div class="col-12 col-sm-6 col-lg-4" *ngFor="let obj of lista()">

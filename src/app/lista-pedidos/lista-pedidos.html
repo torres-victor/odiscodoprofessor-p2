@@ -1,1 +1,36 @@
-<p>lista-pedidos works!</p>
+<div class="painel text-light">
+  @if (lojaService.usuarioLogado(); as usuario) {
+    <h4 class="mb-3">Pedidos de {{ usuario.nome }}</h4>
+
+    @if (carregando()) {
+      <p>Carregando pedidos...</p>
+    } @else if (pedidos().length === 0) {
+      <div class="alert alert-info">Nenhum pedido encontrado para este cliente.</div>
+    } @else {
+      <table class="table table-dark table-striped align-middle">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Data</th>
+            <th>Entrega</th>
+            <th>Observação</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of pedidos(); track p.codigoPedido ?? $index) {
+            <tr>
+              <td>#{{ p.codigoPedido }}</td>
+              <td>{{ p.dataPedido | date:'dd/MM/yyyy' }}</td>
+              <td>{{ p.entrega || '-' }}</td>
+              <td>{{ p.obs || '-' }}</td>
+              <td>{{ p.valorTotal | currency:'BRL' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  } @else {
+    <div class="alert alert-warning">Faça login para visualizar seus pedidos.</div>
+  }
+</div>

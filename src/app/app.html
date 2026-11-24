@@ -24,6 +24,9 @@
     <a routerLink="/" class="text-light text-decoration-none">Início</a>
     <a routerLink="/promo" class="text-light text-decoration-none">Promoções</a>
     <a routerLink="/cesta" class="text-light text-decoration-none">Cesta ({{ cestaService.quantidade }})</a>
+    @if (lojaService.usuarioLogado()) {
+      <a routerLink="/listapedidos" class="text-light text-decoration-none">Meus Pedidos</a>
+    }
   </nav>
 </header>
 

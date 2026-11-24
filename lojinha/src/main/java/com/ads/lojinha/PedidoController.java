@@ -1,5 +1,6 @@
 package com.ads.lojinha;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,36 +15,42 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class PedidoController {
     @Autowired
-    PedidoRepository bd ;
+    PedidoRepository bd;
 
-     
     @GetMapping("/api/pedido/{codigo}")
-    public Pedido retorna(@PathVariable("codigo") int id){
-        if(bd.existsById(id)){
+    public Pedido retorna(@PathVariable("codigo") int id) {
+        if (bd.existsById(id)) {
             return bd.findById(id).get();
         } else {
             return new Pedido();
         }
     }
 
-    @PostMapping("/api/pedido")
-    public String gravar(@RequestBody Pedido obj){
-        bd.save(obj);
-        return "Cliente gravado com sucesso! "+ obj.getCodigoPedido();
+    @GetMapping("/api/pedido/cliente/{codigo}")
+    public List<Pedido> listarPorCliente(@PathVariable("codigo") int codigoCliente) {
+        return bd.findAll().stream()
+                .filter(p -> p.getCodigoCliente() == codigoCliente)
+                .toList();
     }
-   
+
+    @PostMapping("/api/pedido")
+    public String gravar(@RequestBody Pedido obj) {
+        bd.save(obj);
+        return "Pedido gravado com sucesso! " + obj.getCodigoPedido();
+    }
+
     @PutMapping("/api/pedido")
-    public String alterar(@RequestBody Pedido obj){
-        if(bd.existsById(obj.getCodigoPedido())){
+    public String alterar(@RequestBody Pedido obj) {
+        if (bd.existsById(obj.getCodigoPedido())) {
             bd.save(obj);
-            return "PEdido alterado com sucesso! "+ obj.getCodigoPedido();
+            return "Pedido alterado com sucesso! " + obj.getCodigoPedido();
         } else {
             return "Pedido não encontrado!";
         }
     }
 
     @DeleteMapping("/api/pedido/{codigo}")
-    public String apagar(@PathVariable("codigo") int id){
+    public String apagar(@PathVariable("codigo") int id) {
         bd.deleteById(id);
         return "Pedido removido com sucesso!";
     }
