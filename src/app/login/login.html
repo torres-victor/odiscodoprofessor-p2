@@ -1,16 +1,27 @@
-<h3>Faça seu login</h3>
-<div class="alert alert-danger"><strong>Verifique!</strong> E-mail ou senha invalidos!!!</div>
-<div class="row">
-    <div class="col">
-        preencha seus dados abaixo:<br><br>
-        <label>email:</label><input type="email" id="txtEmail" class="form-control"><br>
-        <label>senha:</label><input type="password" id="txtSenha" class="form-control"><br>
-        <button class="btn btn-success w-50">entrar</button><br><br><br>
+<div class="painel">
+<div class="alert alert-success" *ngIf="ok">Login realizado com sucesso.</div>
+<div class="row g-4">
+    <div class="col-12 col-md-6">
+        <h4>Já tenho cadastro</h4>
+        <form #f novalidate [class.was-validated]="tentou" (submit)="$event.preventDefault(); entrar(f)">
+            <label class="form-label" for="txtEmail">Email</label>
+            <input type="email" id="txtEmail" class="form-control" required>
+            <div class="invalid-feedback">Informe um e-mail válido!</div>
+            <label class="form-label mt-3" for="txtSenha">Senha</label>
+            <div class="input-group has-validation">
+                <input [type]="mostrarSenha ? 'text' : 'password'" id="txtSenha" class="form-control" required minlength="8">
+                <button class="btn btn-outline-secondary" type="button" (click)="mostrarSenha = !mostrarSenha">
+                    {{ mostrarSenha ? 'Ocultar' : 'Mostrar' }}
+                </button>
+                <div class="invalid-feedback">A senha deve ter pelo menos 8 caracteres!</div>
+            </div>
+            <div class="text-end mt-3"><button class="btn btn-success">Entrar</button></div>
+        </form>
+        <a routerLink="/reenvio" class="text-warning">Esqueci minha senha</a>
     </div>
-    <div class="col">
-        ainda não tem cadastro: <br><a href="cadastro"
-        class="btn btn-info w-50">novo cadastro</a>
-        <br>esqueceu sua senha: <br><a href="esqueceu"
-        class="btn btn-warning w-50">recuperar senha</a>
-
+    <div class="col-12 col-md-6">
+        <h4>Ainda não tenho cadastro</h4>
+        <a routerLink="/cadastro" class="btn btn-info mt-2">Clique aqui</a>
+    </div>
+</div>
 </div>

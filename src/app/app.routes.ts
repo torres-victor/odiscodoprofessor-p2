@@ -11,7 +11,7 @@ import { ResultadoBusca } from './resultado-busca/resultado-busca';
  
 export const routes: Routes = [
     {path:"", component:Vitrine}, {path:"promo", component:Vitrine},
-    {path:"detalhe", component:Detalhe}, {path:"login", component:Login},
+    {path:"detalhe/:codigo", component:Detalhe}, {path:"login", component:Login},
     {path:"cesta", component:Cesta}, {path:"pedido", component:Pedido},
     {path:"cadastro", component:Cadastro}, {path:"listapedidos", component:ListaPedidos},
     {path:"reenvio", component:Reenvio}, {path:"resultadobusca", component:ResultadoBusca},

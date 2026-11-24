@@ -1,1 +1,82 @@
-<p>cesta works!</p>
+<div class="painel">
+  <h2 class="mb-3">Cesta</h2>
+
+  <div *ngIf="finalizado" class="alert alert-success">Pedido finalizado com sucesso!</div>
+  <div *ngIf="cesta.itens.length === 0 && !finalizado" class="alert alert-warning">Sua cesta está vazia.</div>
+
+  <div *ngIf="cesta.itens.length > 0">
+
+    <!-- CELULAR: cartões empilhados -->
+    <div class="d-md-none">
+      <div class="item-cesta" *ngFor="let item of cesta.itens">
+        <img class="item-capa" src="./Discos/{{item.produto.codigo}}.jpg" alt="Capa de {{item.produto.nome}}">
+        <div class="item-info">
+          <div class="item-nome">{{ item.produto.nome }}</div>
+          <div class="item-artista">{{ item.produto.artista }}</div>
+          <div class="item-linha">
+            <div class="qtd">
+              <button class="btn-qtd" aria-label="Remover um" (click)="diminuir(item)">−</button>
+              <span class="qtd-num">{{ item.quantidade }}</span>
+              <button class="btn-qtd" aria-label="Adicionar um" (click)="aumentar(item)">+</button>
+            </div>
+            <div class="item-valor">{{ subtotal(item) | currency:'BRL' }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="barra-total">
+        <div class="total-linha">
+          <span>Total</span>
+          <strong>{{ total | currency:'BRL' }}</strong>
+        </div>
+        <button class="btn btn-success w-100" (click)="finalizar()">Finalizar</button>
+        <button class="btn btn-link btn-sm text-white-50 w-100 mt-1" (click)="limpar()">Limpar cesta</button>
+      </div>
+    </div>
+
+    <!-- DESKTOP -->
+    <div class="d-none d-md-block">
+      <div class="table-responsive">
+        <table class="table table-dark table-striped align-middle">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th class="text-center">Qtd</th>
+              <th class="text-end">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cesta.itens">
+              <td>
+                <div class="d-flex align-items-center gap-3">
+                  <img class="capa-tabela" src="./Discos/{{item.produto.codigo}}.jpg" alt="Capa de {{item.produto.nome}}">
+                  <div>
+                    <div class="fw-semibold">{{ item.produto.nome }}</div>
+                    <small class="text-info">{{ item.produto.artista }}</small>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-outline-light" aria-label="Remover um" (click)="diminuir(item)">-</button>
+                  <span class="btn btn-dark disabled">{{ item.quantidade }}x</span>
+                  <button class="btn btn-outline-light" aria-label="Adicionar um" (click)="aumentar(item)">+</button>
+                </div>
+              </td>
+              <td class="text-end">{{ subtotal(item) | currency:'BRL' }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Total</th>
+              <th></th>
+              <th class="text-end">{{ total | currency:'BRL' }}</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="d-flex justify-content-between gap-2">
+        <button class="btn btn-outline-light" (click)="limpar()">Limpar cesta</button>
+        <button class="btn btn-success" (click)="finalizar()">Finalizar</button>
+      </div>
+    </div>

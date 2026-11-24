@@ -1,1 +1,5 @@
-<p>barra-busca works!</p>
+<form class="input-group" novalidate (submit)="$event.preventDefault(); buscar(q.value)">
+    <input #q type="search" class="form-control" placeholder="Busca" aria-label="Buscar disco ou artista">
+    <button class="btn btn-warning">OK</button>
+</form>
+<div class="text-warning small mt-1" *ngIf="erro">Digite pelo menos 2 letras para buscar.</div>

@@ -1,1 +1,27 @@
-<p>resultado-busca works!</p>
+<h4 class="text-light mb-3">Pesquisa por: {{termo()}}</h4>
+<div class="alert alert-warning" *ngIf="resultado().length==0">Nenhum disco encontrado.</div>
+<div class="row g-3">
+    <div class="col-12 col-sm-6 col-lg-4" *ngFor="let obj of resultado()">
+        <div class="card card-disco h-100">
+            <a [routerLink]="['/detalhe', obj.codigo]">
+                <img src="./Discos/{{obj.codigo}}.jpg" class="card-img-top capa" alt="Capa de {{obj.nome}}">
+            </a>
+            <div class="card-body pb-0">
+                <h5 class="card-title">{{obj.nome}}</h5>
+                <p class="text-info small mb-0">{{obj.artista}}</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center">
+                <div>
+                    <div *ngIf="obj.valorPromo>0">
+                        <span class="badge text-bg-warning mb-1">Promoção</span><br>
+                        <small class="text-decoration-line-through text-white-50">De: {{obj.valor | currency:'BRL'}}</small><br>
+                        <span class="preco-final">Por: {{obj.valorPromo | currency:'BRL'}}</span>
+                    </div>
+                    <span class="preco-final" *ngIf="obj.valorPromo==0">{{obj.valor | currency:'BRL'}}</span>
+                </div>
+                <button class="btn btn-outline-success" *ngIf="obj.quantidade>0" (click)="comprar(obj)">comprar</button>
+                <span class="badge text-bg-danger" *ngIf="obj.quantidade==0">esgotado</span>
+            </div>
+        </div>
+    </div>
+</div>

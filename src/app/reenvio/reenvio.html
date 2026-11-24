@@ -1,1 +1,13 @@
-<p>reenvio works!</p>
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6 painel">
+    <h4>Informe o seu email</h4>
+    <div class="alert alert-success" *ngIf="enviado">Enviamos as instruções para o seu e-mail.</div>
+    <form #f novalidate [class.was-validated]="tentou" (submit)="$event.preventDefault(); enviar(f)">
+        <div class="input-group has-validation">
+            <input type="email" id="txtEmail" class="form-control" aria-label="E-mail cadastrado" required>
+            <button class="btn btn-warning">OK</button>
+            <div class="invalid-feedback">Informe um e-mail válido!</div>
+        </div>
+    </form>
+  </div>
+</div>

@@ -1,14 +1,34 @@
-<header class="bg-transparent text-light">
-  <img src="loveNortonGlaser.png" class="img-fluid d-block mx-auto w-25"><br>
-  <nav class="d-flex justify-content-center gap-2">
-    <a href="login" class="btn btn-secondary">o</a>
-    <a href="pedidos" class="btn btn-secondary">meu</a>
-    <a href="promo" class="btn btn-secondary">professor</a>
-    <a href="cesta" class="btn btn-secondary">favorito!</a>
+<header class="text-light">
+  <div class="topo d-flex align-items-center gap-2 py-2">
+    <a routerLink="/" class="d-flex align-items-center gap-2 text-decoration-none text-light min-w-0">
+      <img src="logo-vinil.png" class="logo" alt="Logotipo O Disco do Professor">
+      <span class="marca m-0">O Disc<span class="o-vinil" aria-hidden="true"></span> do Professor</span>
+    </a>
+
+    <div class="busca-desktop d-none d-md-block flex-grow-1">
+      <app-barra-busca />
+    </div>
+
+    <a routerLink="/login" class="text-light ms-auto icone-user" title="Login / Cadastro" aria-label="Login / Cadastro">
+      <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="d-md-none pb-2">
+    <app-barra-busca />
+  </div>
+
+  <nav class="menu d-flex flex-wrap justify-content-center gap-4 py-2">
+    <a routerLink="/" class="text-light text-decoration-none">Início</a>
+    <a routerLink="/promo" class="text-light text-decoration-none">Promoções</a>
+    <a routerLink="/cesta" class="text-light text-decoration-none">Cesta ({{ cestaService.quantidade }})</a>
   </nav>
 </header>
 
 <router-outlet />
-<footer class="bg-secondary text-light text-right">
-  Telefone: (11) 2344-2344<br> Email: contato@loja.com<br> Endereço: Rua das Flores, 123 - São Paulo - SP
+<footer class="bg-dark text-light text-center rodape">
+  Telefone: (11) 3141-5926 &bull; Email: contato&#64;odiscodoprofessor.com<br>
+  Endereço: Rua das Borboletas Psicodélicas, 314 - Jabronx, São Paulo - SP
 </footer>

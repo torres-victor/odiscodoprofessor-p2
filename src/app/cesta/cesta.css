@@ -1,0 +1,99 @@
+.item-cesta {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+.item-capa {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.item-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-nome {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.item-artista {
+  font-size: 0.78rem;
+  color: #0dcaf0;
+  margin-bottom: 4px;
+}
+
+.item-linha {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px 8px;
+}
+
+.qtd {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.btn-qtd {
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+  line-height: 1;
+  color: #fff;
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  padding: 0;
+}
+
+.btn-qtd:active {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.qtd-num {
+  min-width: 24px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.item-valor {
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.barra-total {
+  padding-top: 10px;
+  margin-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.total-linha {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.capa-tabela {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}

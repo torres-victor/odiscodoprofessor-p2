@@ -1,0 +1,44 @@
+.logo { width: 72px; height: 72px; }
+.menu { border-top: 2px solid #fff; border-bottom: 2px solid #fff; margin: 8px 0 20px; }
+.marca {
+  font-family: 'Bungee', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 3px 3px 0 #ff00c8, 7px 7px 0 #1b0a2a;
+}
+.o-vinil {
+  display: inline-block;
+  width: 0.95em;
+  height: 0.95em;
+  vertical-align: -0.17em;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle closest-side, #1b0a2a 0 9%, transparent 10%),
+    radial-gradient(circle closest-side, #ff00ae 0 36%, transparent 37%),
+    repeating-radial-gradient(circle, #111 0 2px, #2e2e2e 2px 3px);
+  box-shadow: 1.8px 1.8px 0 #ff00c8, 4px 4px 0 #1b0a2a;
+}
+
+@media (max-width: 575.98px) {
+  .logo { width: 48px; height: 48px; }
+  .marca {
+    font-size: 1rem;
+    letter-spacing: 0;
+    line-height: 1.15;
+    text-shadow: 2px 2px 0 #ff00c8, 4px 4px 0 #1b0a2a;
+  }
+  .o-vinil { box-shadow: 1px 1px 0 #ff00c8, 2px 2px 0 #1b0a2a; }
+}
+
+.rodape { font-size: 0.8rem; line-height: 1.4; }
+
+@media (max-width: 575.98px) {
+  .rodape { font-size: 0.72rem; padding: 8px 10px !important; }
+
+  .min-w-0 { min-width: 0; }
+
+@media (max-width: 575.98px) {
+  .icone-user svg { width: 28px; height: 28px; }
+}
+}

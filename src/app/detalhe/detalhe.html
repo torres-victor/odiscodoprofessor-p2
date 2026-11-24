@@ -1,1 +1,34 @@
-<p>detalhe works!</p>
+@if (carregando()) {
+  <div class="alert alert-info">Carregando...</div>
+} @else if (!disco()) {
+  <div class="alert alert-warning">
+    Disco não encontrado. <a routerLink="/" class="alert-link">Voltar à vitrine</a>
+  </div>
+} @else {
+  @let d = disco()!;
+  <div class="row painel g-3 mx-0">
+    <div class="col-12 col-md-5">
+      <img src="./Discos/{{d.codigo}}.jpg" class="img-fluid rounded capa" alt="Capa de {{d.nome}}">
+    </div>
+    <div class="col-12 col-md-7 d-flex flex-column">
+      <h2>{{d.nome}}</h2>
+      <h5 class="text-info">{{d.artista}}</h5>
+      <p>{{d.descritivo}}</p>
+      @if (d.valorPromo > 0) {
+        <div>
+          <small class="text-decoration-line-through text-white-50">De: {{d.valor | currency:'BRL'}}</small><br>
+          <span class="preco-final">Por: {{d.valorPromo | currency:'BRL'}}</span>
+        </div>
+      } @else {
+        <p class="preco-final">{{d.valor | currency:'BRL'}}</p>
+      }
+      @if (d.quantidade == 0) {
+        <p class="text-danger">Esgotado</p>
+      } @else {
+        <div class="mt-auto text-md-end">
+          <button class="btn btn-success btn-lg" (click)="comprar()">Comprar</button>
+        </div>
+      }
+    </div>
+  </div>
+}
